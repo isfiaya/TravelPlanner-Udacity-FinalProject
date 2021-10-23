@@ -28,7 +28,9 @@ let dateDeff = ''
 const maxDate = new Date(new Date().getTime() + (15 * 24 * 60 * 60 * 1000));
 startDate.min = new Date().toLocaleDateString('en-ca')
 startDate.max = maxDate.toLocaleDateString('en-ca')
-endDate.max = maxDate.toLocaleDateString('en-ca')
+endDate.min = new Date().toLocaleDateString('en-ca')
+endDate.max = startDate.max = maxDate.toLocaleDateString('en-ca')
+
 
 
 // 
@@ -145,6 +147,15 @@ const updateUi = async () => {
     return false
   }
 }
+
+// ENABLE INPUT END DATE WHEN USER INPUT START DATE
+startDate.addEventListener('change', (e) => {
+  endDate.disabled = false
+  //SET MIN INPUT END DATE BASED TO START DATE 
+  endDate.min = e.target.value
+  endDate.value = ''
+})
+
 
 btnGenerate.addEventListener('click', (e) => {
   e.preventDefault()
