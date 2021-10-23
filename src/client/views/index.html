@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Oswald:400,600,700|Ranga:400,700&display=swap" rel="stylesheet">
+  <title>Travel Planner</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="holder headline">
+      <h1> where would you travel next?</h1>
+    </div>
+    <div id="app" class="app">
+      <div class="holder zip">
+        <label for="city">Enter City here:</label>
+        <input type="text" id="city" placeholder="Enter city here">
+      </div>
+      <div class="holder feel">
+        <label for="start">Start date:</label>
+        <input type="date" id="date" name="start" class="date">
+      </div>
+      <button id="generate" type="submit" class="btn__generate"> Generate </button>
+    </div>
+
+    <div class="entry">
+      <div class="entry__information">
+        <p>My Trip to: <span id="entry__city">Paris</span>,<span id="entry__country">France</span></p>
+        <p>Departing: <span id="entry__departing">02/12/2020</span></p>
+      </div>
+      <div class="entry__img">
+        <img
+          src="https://pixabay.com/get/g686297fb5ee6623f6efc8ac8d85ff752142afd88bd3a75166ba52f60371a32d9110a0fbfdfc08f6e61fbd8775c2f4b94_640.jpg"
+          alt="trip" id="entry__img">
+      </div>
+      <div class="entry__information__temp">
+        <p>Typical weather for then is:</p>
+        <p>High - <span id="entry__high__temp">46</span>, Low - <span id="entry__low__temp">35</span> </p>
+        <p id="temp__desc"></p>
+        <!-- <img src="https://www.weatherbit.io/static/img/icons/r01d.png" alt="weather Icon"> -->
+      </div>
+    </div>
+  </div>
+  <script src="../index.js"></script>
+</body>
+
+</html>
