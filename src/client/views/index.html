@@ -14,22 +14,27 @@
     <div class="holder headline">
       <h1> where would you travel next?</h1>
     </div>
-    <div id="app" class="app">
-      <div class="holder zip">
+    <form id="app" class="app">
+      <div class="holder">
         <label for="city">Enter City here:</label>
-        <input type="text" id="city" placeholder="Enter city here">
+        <input type="text" id="city" placeholder="Enter city here" required>
       </div>
       <div class="holder feel">
         <label for="start">Start date:</label>
-        <input type="date" id="date" name="start" class="date">
+        <input type="date" id="start__date" name="start" class="date" required>
+      </div>
+      <div class="holder feel">
+        <label for="start">End date:</label>
+        <input type="date" id="end__date" name="end" class="date">
       </div>
       <button id="generate" type="submit" class="btn__generate"> Generate </button>
-    </div>
+    </form>
 
-    <div class="entry">
+    <main class="entry">
       <div class="entry__information">
         <p>My Trip to: <span id="entry__city">Paris</span>,<span id="entry__country">France</span></p>
         <p>Departing: <span id="entry__departing">02/12/2020</span></p>
+        <p>length of trip: <span id="length__trip">0</span> Days</p>
       </div>
       <div class="entry__img">
         <img
@@ -42,7 +47,7 @@
         <p id="temp__desc"></p>
         <!-- <img src="https://www.weatherbit.io/static/img/icons/r01d.png" alt="weather Icon"> -->
       </div>
-    </div>
+    </main>
   </div>
   <script src="../index.js"></script>
 </body>

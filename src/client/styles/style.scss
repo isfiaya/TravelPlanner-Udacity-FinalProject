@@ -141,14 +141,14 @@ button:focus {
 }
 
 @media only screen and (min-width: 640px) {
-  .app {
-    flex-direction: row;
-  }
-  .btn__generate {
-    align-self: end;
-    padding: 0.6rem 1rem;
-    margin: 0 0 0 1rem;
-  }
+  // .app {
+  //   flex-direction: row;
+  // }
+  // .btn__generate {
+  //   align-self: end;
+  //   padding: 0.6rem 1rem;
+  //   margin: 0 0 0 1rem;
+  // }
   .entry {
     grid-template-columns: 1fr 1fr;
     column-gap: 1rem;

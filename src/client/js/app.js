@@ -1,6 +1,7 @@
 // SELECTORS
 const btnGenerate = document.getElementById('generate')
-const date = document.getElementById('date')
+const startDate = document.getElementById('start__date')
+const endDate = document.getElementById('end__date')
 const city = document.getElementById('city')
 const entryCountry = document.getElementById('entry__country')
 const entryCity = document.getElementById('entry__city')
@@ -10,6 +11,7 @@ const entryHighTemp = document.getElementById('entry__high__temp')
 const entryLowTemp = document.getElementById('entry__low__temp')
 const tempDesc = document.getElementById('temp__desc')
 const tempIcon = document.getElementById('temp__icon')
+const lengthTrip = document.getElementById('length__trip')
 // URL IMAGE IF pixaBay NOT FOUND IMAGE
 const UrlImageNoAvailable = 'https://propertywiselaunceston.com.au/wp-content/themes/property-wise/images/no-image.png'
 // GLOBAL VARIABLE FOR THE API
@@ -20,8 +22,31 @@ let apiKeyPixBay = ''
 let weatherBitMatchDay = ''
 let responseGeo = ''
 let tripImg = ''
-//Set date input field's min date to today
-date.min = new Date().toLocaleDateString('en-ca')
+let dateDeff = ''
+// Set date input field's min date today 
+// SET MAX DATE 5 DAYS FROM TODAY 
+const maxDate = new Date(new Date().getTime() + (15 * 24 * 60 * 60 * 1000));
+startDate.min = new Date().toLocaleDateString('en-ca')
+startDate.max = maxDate.toLocaleDateString('en-ca')
+endDate.max = maxDate.toLocaleDateString('en-ca')
+
+
+// 
+const _MS_PER_DAY = 1000 * 60 * 60 * 24;
+
+// a and b are javascript Date objects
+function dateDiffInDays() {
+  // Discard the time and time-zone information.
+  const a = new Date(startDate.value)
+  const b = new Date(endDate.value)
+  const utc1 = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate());
+  const utc2 = Date.UTC(b.getFullYear(), b.getMonth(), b.getDate());
+  dateDeff = Math.floor((utc2 - utc1) / _MS_PER_DAY);
+}
+
+
+
+
 // RESQUEST TO THE SERVER TO PULL API KEYS
 const apiKeys = async () => {
   try {
@@ -35,8 +60,6 @@ const apiKeys = async () => {
     console.log(err)
   }
 }
-apiKeys()
-
 // -------
 const geoName = async () => {
   const response = await fetch(`http://api.geonames.org/searchJSON?q=${city.value}&maxRows=1&username=${username}`)
@@ -69,7 +92,7 @@ const weatherBit = async (data) => {
       const weatherBit = await response.json()
       const weatherBitData = await weatherBit.data
       // FILTER DATA ACCORDING THE DATE THAT USER INPUT
-      weatherBitMatchDay = await weatherBitData.filter(day => day.datetime === date.value)
+      weatherBitMatchDay = await weatherBitData.filter(day => day.datetime === startDate.value)
       console.log(weatherBitMatchDay)
     }
   }
@@ -94,6 +117,7 @@ const pixaBay = async () => {
 }
 // UDDATE UI
 const updateUi = async () => {
+  dateDiffInDays()
   try {
     if (weatherBitMatchDay && responseGeo) {
       //
@@ -103,6 +127,7 @@ const updateUi = async () => {
       entryHighTemp.innerHTML = Math.floor(weatherBitMatchDay[0].high_temp)
       entryLowTemp.innerHTML = Math.floor(weatherBitMatchDay[0].low_temp)
       tempDesc.innerHTML = weatherBitMatchDay[0].weather.description
+      lengthTrip.innerHTML = dateDeff
       // tempIcon.innerHTML = weatherBitMatchDay[0].weather.icon
       //
       if (!tripImg) {
@@ -113,7 +138,7 @@ const updateUi = async () => {
       }
       //RESET INPUT
       city.value = ''
-      date.value = ''
+      startDate.value = ''
     }
   }
   catch (err) {
@@ -121,16 +146,19 @@ const updateUi = async () => {
   }
 }
 
-btnGenerate.addEventListener('click', () => {
-  if (!date.value || !city.value) {
+btnGenerate.addEventListener('click', (e) => {
+  e.preventDefault()
+  if (!startDate.value || !city.value) {
     alert('Please make sure all fields are filled in correctly! ')
     return
   }
-  geoName()
+  apiKeys()
+    .then(() => geoName())
     .then((data) => weatherBit(data))
     .then(() => pixaBay())
     .then(() => updateUi())
 
+  dateDiffInDays()
 })
 
 export { geoName }
