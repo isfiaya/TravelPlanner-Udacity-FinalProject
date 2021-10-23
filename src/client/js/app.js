@@ -12,9 +12,10 @@ const entryLowTemp = document.getElementById('entry__low__temp')
 const tempDesc = document.getElementById('temp__desc')
 const tempIcon = document.getElementById('temp__icon')
 const lengthTrip = document.getElementById('length__trip')
+const daysTravel = document.getElementById('days__travel')
 // URL IMAGE IF pixaBay NOT FOUND IMAGE
 const UrlImageNoAvailable = 'https://propertywiselaunceston.com.au/wp-content/themes/property-wise/images/no-image.png'
-// GLOBAL VARIABLE FOR THE API
+// GLOBAL VARIABLE FOR THE API KEYS
 let username = '';
 let apiKeyWeatherBit = '';
 let apiKeyPixBay = ''
@@ -30,12 +31,8 @@ startDate.min = new Date().toLocaleDateString('en-ca')
 startDate.max = maxDate.toLocaleDateString('en-ca')
 endDate.min = new Date().toLocaleDateString('en-ca')
 endDate.max = startDate.max = maxDate.toLocaleDateString('en-ca')
-
-
-
 // 
 const _MS_PER_DAY = 1000 * 60 * 60 * 24;
-
 // a and b are javascript Date objects
 function dateDiffInDays() {
   // Discard the time and time-zone information.
@@ -45,11 +42,7 @@ function dateDiffInDays() {
   const utc2 = Date.UTC(b.getFullYear(), b.getMonth(), b.getDate());
   dateDeff = Math.floor((utc2 - utc1) / _MS_PER_DAY);
 }
-
-
-
-
-// RESQUEST TO THE SERVER TO PULL API KEYS
+// RESQUEST TO THE SERVER TO GET API KEYS
 const apiKeys = async () => {
   try {
     const response = await fetch('http://localhost:3000/key')
@@ -62,7 +55,7 @@ const apiKeys = async () => {
     console.log(err)
   }
 }
-// -------
+// GEONAMES API REQUEST
 const geoName = async () => {
   const response = await fetch(`http://api.geonames.org/searchJSON?q=${city.value}&maxRows=1&username=${username}`)
   const data = await response.json()
@@ -78,12 +71,12 @@ const geoName = async () => {
       return responseGeo
     }
     else {
-      alert('Make sure to enter the correct city!')
+      throw new Error('handled')
     }
   }
   catch (err) {
     alert('Make sure to enter the correct city!')
-    return false
+    throw new Error('handled')
   }
 }
 // WEATHERBIT API REQUEST
@@ -110,44 +103,40 @@ const pixaBay = async () => {
     const data = await response.json()
     const bgImg = await data.hits[0]
     tripImg = await bgImg
-    console.log(data)
   }
   catch (err) {
-    console.log(err)
     return false
   }
 }
 // UDDATE UI
+let dataStorage = ''
 const updateUi = async () => {
-  dateDiffInDays()
+  const localStorageContent = localStorage.getItem('data');
+  dataStorage = JSON.parse(localStorageContent);
   try {
-    if (weatherBitMatchDay && responseGeo) {
+    if (dataStorage) {
       //
-      entryCountry.innerHTML = responseGeo.geoCountry
-      entryCity.innerHTML = responseGeo.geoName
-      entryDeparting.innerHTML = weatherBitMatchDay[0].datetime
-      entryHighTemp.innerHTML = Math.floor(weatherBitMatchDay[0].high_temp)
-      entryLowTemp.innerHTML = Math.floor(weatherBitMatchDay[0].low_temp)
-      tempDesc.innerHTML = weatherBitMatchDay[0].weather.description
-      lengthTrip.innerHTML = dateDeff
+      entryCountry.innerHTML = dataStorage.Country
+      entryCity.innerHTML = dataStorage.City
+      entryDeparting.innerHTML = dataStorage.weatherBitMatchDay[0].datetime
+      entryHighTemp.innerHTML = Math.floor(dataStorage.weatherBitMatchDay[0].high_temp)
+      entryLowTemp.innerHTML = Math.floor(dataStorage.weatherBitMatchDay[0].low_temp)
+      tempDesc.innerHTML = dataStorage.weatherBitMatchDay[0].weather.description
+      lengthTrip.innerHTML = dataStorage.dateDeff
       // tempIcon.innerHTML = weatherBitMatchDay[0].weather.icon
-      //
-      if (!tripImg) {
-        entryImg.setAttribute('src', UrlImageNoAvailable)
-      }
-      else {
-        entryImg.setAttribute('src', tripImg.webformatURL)
-      }
+      dataStorage.dateDeff > 1 ? daysTravel.innerHTML = 'Days' : daysTravel.innerHTML = 'Day'
+      // SET IMAGE BASED IF THERE IMAGE AVAILABLE  OR NOT 
+      dataStorage.tripImg ? entryImg.setAttribute('src', dataStorage.tripImg.webformatURL) : entryImg.setAttribute('src', UrlImageNoAvailable)
       //RESET INPUT
       city.value = ''
       startDate.value = ''
+      endDate.value = ''
     }
   }
   catch (err) {
     return false
   }
 }
-
 // ENABLE INPUT END DATE WHEN USER INPUT START DATE
 startDate.addEventListener('change', (e) => {
   endDate.disabled = false
@@ -155,21 +144,39 @@ startDate.addEventListener('change', (e) => {
   endDate.min = e.target.value
   endDate.value = ''
 })
-
-
+// HANDUL SUBMIT
 btnGenerate.addEventListener('click', (e) => {
   e.preventDefault()
   if (!startDate.value || !city.value) {
     alert('Please make sure all fields are filled in correctly! ')
     return
   }
+  dateDiffInDays()
   apiKeys()
     .then(() => geoName())
-    .then((data) => weatherBit(data))
+    .then(result => weatherBit(result))
     .then(() => pixaBay())
+    .then(() => {
+      const data = {
+        Country: responseGeo.geoCountry,
+        City: responseGeo.geoName,
+        weatherBitMatchDay: weatherBitMatchDay,
+        tripImg: tripImg,
+        dateDeff: dateDeff
+      }
+      localStorage.setItem('data', JSON.stringify(data));
+    })
     .then(() => updateUi())
-
-  dateDiffInDays()
 })
+// WINDOW LOAD
+window.addEventListener('load', (e) => {
+  const localStorageContent = localStorage.getItem('data');
+  dataStorage = JSON.parse(localStorageContent);
+  console.log(dataStorage)
+  if (dataStorage) {
+    updateUi()
+  }
+});
+
 
 export { geoName }
