@@ -11,6 +11,7 @@ body {
 }
 .container {
   padding: 1rem;
+  max-width: 1300px;
 }
 .app {
   display: flex;
@@ -23,9 +24,8 @@ body {
   padding: 2rem;
   border-radius: 0.5rem;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  max-width: 550px;
+  max-width: 20rem;
   margin: auto;
-  margin-top: 25px;
 }
 
 .holder {
@@ -38,13 +38,11 @@ body {
   background: #74b9ff;
   color: white;
   border-radius: 0.5rem;
-  max-width: 40rem;
   margin: auto;
   margin-top: 3rem;
   padding: 1rem;
   display: grid;
   grid-row-gap: 1rem;
-  max-width: 550px;
   p {
     font-size: 1.2rem;
   }
@@ -106,7 +104,8 @@ input {
 h1 {
   font-size: 1.5rem;
   margin: 0;
-  color: #636e72;
+  color: white;
+  text-align: center;
 }
 /* Reset style for HTML element on active to have no border*/
 input:focus,
@@ -147,5 +146,19 @@ button:focus {
     grid-column-start: 1;
     grid-row-start: 1;
     grid-row-end: 3;
+  }
+}
+@media (min-width: 768px) {
+  .container {
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 2%;
+  }
+  .app {
+    margin: initial;
+    margin-top: 0rem;
+  }
+  .entry {
+    margin-top: 0rem;
   }
 }
