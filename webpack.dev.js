@@ -9,7 +9,7 @@ module.exports = {
   devtool: 'source-map',
   output: {
     libraryTarget: 'var',
-    library: 'Client'
+    library: 'Client',
   },
   stats: 'verbose',
   module: {
@@ -22,6 +22,13 @@ module.exports = {
       {
         test: /\.scss$/,
         use: ['style-loader', 'css-loader', 'sass-loader']
+      },
+      {
+        test: /\.(png|jpg|gif|svg)$/,
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]?[hash]'
+        }
       }
     ]
   },

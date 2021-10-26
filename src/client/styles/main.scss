@@ -1,0 +1,50 @@
+main {
+  margin-top: 2rem;
+  form {
+    display: flex;
+    flex-direction: column;
+    background-color: #8ec5fc;
+    background-image: linear-gradient(62deg, #8ec5fc 0%, #e0c3fc 100%);
+    color: white;
+    gap: 1rem;
+    font-size: 1rem;
+    font-family: "Oswald", sans-serif;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    max-width: 25rem;
+    margin: auto;
+    button {
+      padding: 0.4rem 0;
+      width: 7rem;
+      margin: auto;
+      background: #1966b3;
+      color: white;
+      font-size: 1rem;
+      font-family: "Oswald", sans-serif;
+      border: none;
+      cursor: pointer;
+      border-radius: 0.5rem;
+      box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+      margin-top: 1rem;
+      transition: all 300ms ease-in-out;
+    }
+    button:hover {
+      background: #1966b3b3;
+    }
+  }
+}
+@media (min-width: 1024px) {
+  aside {
+    display: block;
+    img {
+      width: 100%;
+      object-fit: contain;
+      height: 100%;
+    }
+  }
+  main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}

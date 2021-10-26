@@ -10,7 +10,15 @@
 </head>
 
 <body>
-  <div class="container">
+  <header>
+    <div>
+      Udacity
+    </div>
+    <div>
+      Travel Planner
+    </div>
+  </header>
+  <main>
     <form id="app" class="app">
       <h1> where would you travel next?</h1>
       <div class="holder">
@@ -27,24 +35,29 @@
       </div>
       <button id="generate" type="submit" class="btn__generate"> Generate </button>
     </form>
-
-    <main class="entry">
-      <div class="entry__information">
-        <p>My Trip to: <span id="entry__city"></span>,<span id="entry__country"></span></p>
-        <p>Departing: <span id="entry__departing"></span></p>
-        <p>length of trip: <span id="length__trip"></span> <span id="days__travel"></span></p>
-      </div>
-      <div class="entry__img">
-        <img src="" alt="trip" id="entry__img">
-      </div>
-      <div class="entry__information__temp">
-        <p>Typical weather for then is:</p>
-        <p>High - <span id="entry__high__temp"></span>, Low - <span id="entry__low__temp"></span> </p>
-        <p id="temp__desc"></p>
-        <!-- <img src="https://www.weatherbit.io/static/img/icons/r01d.png" alt="weather Icon"> -->
-      </div>
-    </main>
+    <aside>
+      <img src="travel1.png" alt="travel">
+    </aside>
+  </main>
+  <div class="entry">
+    <div class="entry__information">
+      <p>My Trip to: <span id="entry__city"></span>,<span id="entry__country"></span></p>
+      <p>Departing: <span id="entry__departing"></span></p>
+      <p>length of trip: <span id="length__trip"></span> <span id="days__travel"></span></p>
+    </div>
+    <div class="entry__img">
+      <img src="" alt="trip" id="entry__img">
+    </div>
+    <div class="entry__information__temp">
+      <p>Typical weather for then is:</p>
+      <p>High - <span id="entry__high__temp"></span>, Low - <span id="entry__low__temp"></span> </p>
+      <p id="temp__desc"></p>
+      <!-- <img src="https://www.weatherbit.io/static/img/icons/r01d.png" alt="weather Icon"> -->
+    </div>
   </div>
+  <footer>
+    <p>developed by © Aymen Isfiaya</p>
+  </footer>
 </body>
 
 </html>
