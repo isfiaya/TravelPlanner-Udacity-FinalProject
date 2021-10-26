@@ -4,7 +4,7 @@
   "description": "## Overview This project requires you to create an asynchronous web app that uses Web API and user data to dynamically update the UI.",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --env=jsdom",
     "start": "node src/server/server.js",
     "build": "webpack --config webpack.prod.js",
     "build-prod": "webpack --config webpack.prod.js",
@@ -21,6 +21,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.15.8",
+    "@babel/plugin-transform-runtime": "^7.15.8",
+    "@babel/preset-env": "^7.15.8",
     "babel-loader": "^8.2.3",
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.4.0",
@@ -28,12 +30,15 @@
     "file-loader": "^6.2.0",
     "html-loader": "^2.1.2",
     "html-webpack-plugin": "^5.4.0",
+    "jest": "^27.3.1",
     "mini-css-extract-plugin": "^2.4.2",
     "node-sass": "^6.0.1",
     "sass-loader": "^12.2.0",
     "style-loader": "^3.3.0",
+    "supertest": "^6.1.6",
     "webpack": "^5.59.1",
     "webpack-cli": "^4.9.1",
-    "webpack-dev-server": "^4.3.1"
+    "webpack-dev-server": "^4.3.1",
+    "workbox-webpack-plugin": "^6.3.0"
   }
 }

@@ -30,7 +30,9 @@ app.get('/key', async (req, res) => {
     apiKeyPixaBay: process.env.API_KEY_PIXABAY
   })
 })
-
+app.get('/test', async (req, res) => {
+  res.json({ msg: 'pass!' })
+})
 
 
 // Setup Server
@@ -38,3 +40,5 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
+module.exports = app

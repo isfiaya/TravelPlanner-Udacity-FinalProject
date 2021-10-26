@@ -2,8 +2,6 @@
 
 ## Udacity nanodegree front end -- project 5 (final)
 
-[the project deployed in heroku](https://evaluate-articles.herokuapp.com/)
-
 ## NOTES:
 
 This project requires you to build out a travel app that, at a minimum, obtains a desired trip location & date from the user, and displays weather and an image of the location using information obtained from external APIs.

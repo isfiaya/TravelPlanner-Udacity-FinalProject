@@ -45,10 +45,11 @@ window.addEventListener('load', (e) => {
   if (dataStorage) {
     updateUi()
   }
+  // REMOVE TRIP 
+  btnRemove.addEventListener('click', () => {
+    localStorage.removeItem('data')
+    result.style.display = 'none'
+  })
 });
-// REMOVE TRIP 
-btnRemove.addEventListener('click', () => {
-  localStorage.removeItem('data')
-  result.style.display = 'none'
-})
+
 export { updateUi }

@@ -19,7 +19,7 @@ endDate.max = startDate.max = maxDate.toLocaleDateString('en-ca')
 // RESQUEST TO THE SERVER TO GET API KEYS
 const apiKeys = async () => {
   try {
-    const response = await fetch('https://travel-planner-udacity.herokuapp.com/key')
+    const response = await fetch('http://localhost:3000/key')
     const data = await response.json()
     username = await data.geoUserName
     apiKeyWeatherBit = await data.apiKeyWeatherBit
@@ -41,7 +41,6 @@ const geoName = async () => {
         geoCountry: data.geonames[0].countryName,
         geoName: data.geonames[0].name
       }
-      console.log(data)
       return responseGeo
     }
     else {
@@ -62,7 +61,6 @@ const weatherBit = async (data) => {
       const weatherBitData = await weatherBit.data
       // FILTER DATA ACCORDING THE DATE THAT USER INPUT
       weatherBitMatchDay = await weatherBitData.filter(day => day.datetime === startDate.value)
-      console.log(weatherBitMatchDay)
     }
   }
   catch (err) {
