@@ -31,7 +31,7 @@ const apiKeys = async () => {
 }
 // GEONAMES API REQUEST
 const geoName = async () => {
-  const response = await fetch(`https://api.geonames.org/searchJSON?q=${city.value}&maxRows=1&username=${username}`)
+  const response = await fetch(`http://api.geonames.org/searchJSON?q=${city.value}&maxRows=1&username=${username}`)
   const data = await response.json()
   try {
     if (data.geonames[0].name.toLowerCase() === city.value.toLowerCase()) {
