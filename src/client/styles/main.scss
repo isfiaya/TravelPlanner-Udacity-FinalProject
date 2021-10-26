@@ -14,11 +14,11 @@ main {
     max-width: 25rem;
     margin: auto;
     button {
-      padding: 0.5rem 1rem;
+      padding: 0.8rem 1.3rem;
       margin: auto;
-      background: #1966b3;
+      background: #8566e5;
       color: white;
-      font-size: 1rem;
+      font-size: 1.1rem;
       border: none;
       cursor: pointer;
       border-radius: 0.5rem;
@@ -27,7 +27,7 @@ main {
       transition: all 300ms ease-in-out;
     }
     button:hover {
-      background: #1966b3b3;
+      background: #8566e5b3;
     }
   }
 }

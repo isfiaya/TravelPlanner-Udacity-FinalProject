@@ -7,7 +7,6 @@ import './styles/main.scss';
 import './styles/footer.scss';
 import './styles/result.scss';
 import './media/travel1.png'
-import './media/travel.svg'
 export {
   geoName,
   updateUi,
