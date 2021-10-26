@@ -1,27 +1,45 @@
-# Weather-Journal App Project
+# Travel Planner App
 
-# NOTES:
+## Udacity nanodegree front end -- project 5 (final)
 
-A web APP to get the weather through ZIP CODE (US).
+[the project deployed in heroku](https://evaluate-articles.herokuapp.com/)
 
-All the fields must be completed to get the weather
+## NOTES:
+
+This project requires you to build out a travel app that, at a minimum, obtains a desired trip location & date from the user, and displays weather and an image of the location using information obtained from external APIs.
+
+### information about project
+
+- set up with Webpack, Express, Node, and Sass, and Service Workers
+- Have separate dev and prod configurations for Webpack
+- Have the developer environment set up with the Webpack dev server
+- Use Sass for styling
+- Minify js and styles in the production environment
+- Response from the API added to the view for a user to see
+- able to show content offline
 
 ### Project Dependencies
 
 - cors
 - body-parser
 - express
+- webpack
+- and more ...
 
-### clone this repo.
+### Getting Started
 
-- install the package, npm install
-- run the serve
-
-It is necessary to have NODE installed, run the server on the port 3000
-
-1. npm install
-2. node server.js
+1. Clone this repo by using git clone command.
+2. Run npm install to install all the dependencies of the project
+3. Create a .env file to store the following API Keys:
+   USERNAME_GEONAMES
+   API_KEY_WEATHERBIT
+   API_KEY_PIXABAY
+4. Run npm run build-dev to start the dev server
+5. Run npm run build-prod to create the dist folder
+6. Run npm start to start the server
 
 ### API Credentials
 
-- OpenWeatherMap.com
+- Geonames API
+- Weatherbit API
+- Pixabay API
