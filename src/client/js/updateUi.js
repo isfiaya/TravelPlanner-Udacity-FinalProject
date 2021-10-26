@@ -1,12 +1,11 @@
 // SELECTORS
-const entryCountry = document.getElementById('entry__country')
-const entryCity = document.getElementById('entry__city')
-const entryImg = document.getElementById('entry__img')
-const entryDeparting = document.getElementById('entry__departing')
-const entryHighTemp = document.getElementById('entry__high__temp')
-const entryLowTemp = document.getElementById('entry__low__temp')
+const resultCountry = document.getElementById('result__country')
+const resultCity = document.getElementById('result__city')
+const resultImg = document.getElementById('result__img')
+const resultDeparting = document.getElementById('result__departing')
+const resultHighTemp = document.getElementById('result__high__temp')
+const resultLowTemp = document.getElementById('result__low__temp')
 const tempDesc = document.getElementById('temp__desc')
-// const tempIcon = document.getElementById('temp__icon')
 const lengthTrip = document.getElementById('length__trip')
 const daysTravel = document.getElementById('days__travel')
 //  GLOBAL VARIABLE
@@ -19,15 +18,15 @@ const updateUi = async () => {
   dataStorage = JSON.parse(localStorageContent);
   try {
     if (dataStorage) {
-      entryCountry.innerHTML = dataStorage.Country
-      entryCity.innerHTML = dataStorage.City
-      entryDeparting.innerHTML = dataStorage.weatherBitMatchDay[0].datetime
-      entryHighTemp.innerHTML = Math.floor(dataStorage.weatherBitMatchDay[0].high_temp)
-      entryLowTemp.innerHTML = Math.floor(dataStorage.weatherBitMatchDay[0].low_temp)
+      resultCountry.innerHTML = dataStorage.Country
+      resultCity.innerHTML = dataStorage.City
+      resultDeparting.innerHTML = dataStorage.weatherBitMatchDay[0].datetime
+      resultHighTemp.innerHTML = Math.floor(dataStorage.weatherBitMatchDay[0].high_temp)
+      resultLowTemp.innerHTML = Math.floor(dataStorage.weatherBitMatchDay[0].low_temp)
       tempDesc.innerHTML = dataStorage.weatherBitMatchDay[0].weather.description
       lengthTrip.innerHTML = dataStorage.dateDeff
       dataStorage.dateDeff > 1 ? daysTravel.innerHTML = 'Days' : daysTravel.innerHTML = 'Day'
-      dataStorage.tripImg ? entryImg.setAttribute('src', dataStorage.tripImg.webformatURL) : entryImg.setAttribute('src', UrlImageNoAvailable)
+      dataStorage.tripImg ? resultImg.setAttribute('src', dataStorage.tripImg.webformatURL) : resultImg.setAttribute('src', UrlImageNoAvailable)
     }
   }
   catch (err) {

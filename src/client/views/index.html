@@ -5,7 +5,11 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://fonts.googleapis.com/css?family=Oswald:400,600,700|Ranga:400,700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap"
+    rel="stylesheet">
   <title>Travel Planner</title>
 </head>
 
@@ -39,21 +43,28 @@
       <img src="travel1.png" alt="travel">
     </aside>
   </main>
-  <div class="entry">
-    <div class="entry__information">
-      <p>My Trip to: <span id="entry__city"></span>,<span id="entry__country"></span></p>
-      <p>Departing: <span id="entry__departing"></span></p>
-      <p>length of trip: <span id="length__trip"></span> <span id="days__travel"></span></p>
+  <h2>Your Trip</h2>
+  <div class="result">
+    <div class="result__img">
+      <img src="" alt="trip" id="result__img">
     </div>
-    <div class="entry__img">
-      <img src="" alt="trip" id="entry__img">
+    <div class="result__information">
+      <h3><span id="result__city"></span>,<span id="result__country"></span></h3>
+      <div class="result__content">
+        <div class="result__information__temp">
+          <img src="https://www.weatherbit.io/static/img/icons/r01d.png" alt="weather Icon">
+        </div>
+        <div class="result__information__desc">
+          <p>Departing: <span id="result__departing"></span></p>
+          <p>length of trip: <span id="length__trip"></span> <span id="days__travel"></span></p>
+          <p>Typical weather for then is:</p>
+          <p>High - <span id="result__high__temp"></span>°C , Low - <span id="result__low__temp"></span>°C</p>
+          <p id="temp__desc"></p>
+        </div>
+      </div>
+
     </div>
-    <div class="entry__information__temp">
-      <p>Typical weather for then is:</p>
-      <p>High - <span id="entry__high__temp"></span>, Low - <span id="entry__low__temp"></span> </p>
-      <p id="temp__desc"></p>
-      <!-- <img src="https://www.weatherbit.io/static/img/icons/r01d.png" alt="weather Icon"> -->
-    </div>
+    <button id="btn_remove" class="btn_remove">Remove Trip</button>
   </div>
   <footer>
     <p>developed by © Aymen Isfiaya</p>

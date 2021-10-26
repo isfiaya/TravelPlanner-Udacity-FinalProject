@@ -5,6 +5,7 @@ import './styles/style.scss';
 import './styles/header.scss';
 import './styles/main.scss';
 import './styles/footer.scss';
+import './styles/result.scss';
 import './media/travel1.png'
 import './media/travel.svg'
 export {

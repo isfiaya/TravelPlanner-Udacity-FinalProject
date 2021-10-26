@@ -1,5 +1,5 @@
 main {
-  margin-top: 2rem;
+  margin: 2rem 1rem 1rem 1rem;
   form {
     display: flex;
     flex-direction: column;
@@ -8,20 +8,17 @@ main {
     color: white;
     gap: 1rem;
     font-size: 1rem;
-    font-family: "Oswald", sans-serif;
     padding: 2rem;
     border-radius: 0.5rem;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     max-width: 25rem;
     margin: auto;
     button {
-      padding: 0.4rem 0;
-      width: 7rem;
+      padding: 0.5rem 1rem;
       margin: auto;
       background: #1966b3;
       color: white;
       font-size: 1rem;
-      font-family: "Oswald", sans-serif;
       border: none;
       cursor: pointer;
       border-radius: 0.5rem;
