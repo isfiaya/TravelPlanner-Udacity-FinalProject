@@ -19,7 +19,7 @@ endDate.max = startDate.max = maxDate.toLocaleDateString('en-ca')
 // RESQUEST TO THE SERVER TO GET API KEYS
 const apiKeys = async () => {
   try {
-    const response = await fetch('http://localhost:3000/key')
+    const response = await fetch('https://travel-planner-udacity.herokuapp.com/key')
     const data = await response.json()
     username = await data.geoUserName
     apiKeyWeatherBit = await data.apiKeyWeatherBit
